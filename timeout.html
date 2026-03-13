@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeout Recovery</title>
+    <link rel="stylesheet" href="style.css?v=5">
+</head>
+
+<body>
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h1>Timeout Recovery</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Deadlock Detection & Recovery</p>
+            </div>
+            <a href="index.html" class="btn">← Back to Menu</a>
+        </div>
+
+        <script>window.INITIAL_MODE = 'timeout';</script>
+
+        <div class="grid-layout">
+            <div class="sidebar">
+                <div class="glass-panel">
+                    <h3>Controls</h3>
+                    <div class="control-group" style="margin-top: 1.5rem;">
+                        <label>Strategy</label>
+                        <select id="param-mode" class="btn" style="width:100%;" onchange="changeMode()">
+                            <option value="timeout">Timeout (Recovery)</option>
+                            <option value="naive">Naive (Comparison)</option>
+                        </select>
+                    </div>
+                    <div class="control-group" style="margin-top: 1rem;">
+                        <label>Context</label>
+                        <select id="param-theme" class="btn" style="width:100%;" onchange="changeTheme()">
+                            <option value="classic">Dining Philosophers</option>
+                            <option value="os">OS Resources</option>
+                        </select>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.5rem;">
+                        <button id="btn-play" class="btn btn-primary" style="grid-column: span 2;"
+                            onclick="toggleAuto()">▶ Start</button>
+                        <button class="btn" onclick="nextStep()">Step >></button>
+                        <button class="btn" onclick="reset()">Reset</button>
+                    </div>
+                    <div class="control-group" style="margin-top:1.5rem">
+                        <label>Speed</label>
+                        <input type="range" id="param-speed" min="100" max="2000" value="1000">
+                    </div>
+                </div>
+
+                <div class="glass-panel" style="margin-top:1rem;">
+                    <h3 style="color:var(--accent)">How it Works</h3>
+                    <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">
+                        Allows "Naive" allocation, but sets a <strong>Timer</strong> on waiting.
+                        <br><br>
+                        If a process waits too long (> 4s), it assumes a deadlock has occurred (or starvation),
+                        **aborts**, releases all resources, and retries later.
+                    </p>
+                </div>
+
+                <!-- Status Display -->
+                <div class="glass-panel" style="margin-top:auto; padding:1rem; text-align:center;">
+                    <div
+                        style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.5rem;">
+                        Current Action</div>
+                    <div id="log-container"
+                        style="font-family:var(--font-mono); color:var(--text-main); font-size:1rem; min-height:1.5em; display:flex; align-items:center; justify-content:center;">
+                        System Ready
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel visual-area">
+                <svg id="graph-canvas"></svg>
+                <div id="visual-table" class="table-surface"></div>
+                <div class="legend glass-panel">
+                    <div style="font-weight: 700; margin-bottom: 0.8rem; color: var(--primary);">LEGEND</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="dot"
+                                style="width:10px; height:10px; background:rgba(0,0,0,0.1); border-radius:50%"></div>
+                            <span>Thinking (Idle)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="dot"
+                                style="width:10px; height:10px; background:var(--warning); border-radius:50%"></div>
+                            <span>Hungry (Requesting)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div class="dot"
+                                style="width:10px; height:10px; background:var(--success); border-radius:50%"></div>
+                            <span>Eating (Active)</span>
+                        </div>
+                        <div style="height: 1px; background: rgba(0,0,0,0.1); margin: 4px 0;"></div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 20px; height: 2px; background: var(--success);"></div>
+                            <span>Allocated</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 20px; height: 2px; border-bottom: 2px dashed var(--warning);"></div>
+                            <span>Requesting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="common.js?v=5"></script>
+    <script src="deadlock.js?v=5"></script>
+</body>
+
+</html>

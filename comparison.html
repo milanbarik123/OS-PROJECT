@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Comparison</title>
+    <link rel="stylesheet" href="style.css?v=3">
+    <style>
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-main);
+            margin-top: 2rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .comparison-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .status-yes {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .status-no {
+            color: var(--danger);
+            font-weight: bold;
+        }
+
+        .status-partial {
+            color: var(--warning);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h1>Deadlock Strategy Framework</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Comparative Analysis of Algorithms</p>
+            </div>
+            <a href="index.html" class="btn">
+                ← Back to Menu
+            </a>
+        </div>
+
+        <div class="glass-panel">
+            <h2>Strategy Comparison Matrix</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Type</th>
+                        <th>Deadlock Free?</th>
+                        <th>Starvation Free?</th>
+                        <th>Overhead</th>
+                        <th>Key Mechanism</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Resource Hierarchy</strong></td>
+                        <td>Prevention</td>
+                        <td class="status-yes">Yes</td>
+                        <td class="status-partial">No (possible)</td>
+                        <td>Low</td>
+                        <td>Global Ordering (Break Circular Wait)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chandy-Misra</strong></td>
+                        <td>Avoidance</td>
+                        <td class="status-yes">Yes</td>
+                        <td class="status-yes">Yes</td>
+                        <td>Medium (Messages)</td>
+                        <td>Dirty/Clean Forks (Acyclic Graph)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Arbitrator (Butler)</strong></td>
+                        <td>Prevention</td>
+                        <td class="status-yes">Yes</td>
+                        <td class="status-yes">Yes</td>
+                        <td>Low</td>
+                        <td>Limit active processes (N-1)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wait-Die</strong></td>
+                        <td>Avoidance</td>
+                        <td class="status-yes">Yes</td>
+                        <td class="status-partial">Kill-prone</td>
+                        <td>Medium (Restarts)</td>
+                        <td>Timestamps (Priority)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Timeout</strong></td>
+                        <td>Recovery</td>
+                        <td class="status-partial">Recurs</td>
+                        <td class="status-no">No</td>
+                        <td>High (Rollbacks)</td>
+                        <td>Release & Retry</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Naive</strong></td>
+                        <td>None</td>
+                        <td class="status-no">No</td>
+                        <td class="status-no">No</td>
+                        <td>Zero</td>
+                        <td>None (Baseline)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid-layout" style="margin-top: 2rem; height: auto;">
+            <div class="glass-panel">
+                <h3 style="color: var(--accent)">Detection Logic (DFS)</h3>
+                <p style="margin-top:1rem; color:var(--text-muted); line-height:1.6;">
+                    In our <strong>Framework</strong>, deadlock detection uses a Depth First Search (DFS) on the
+                    Wait-For Graph.
+                    <br><br>
+                    <code>Graph Construction:</code> Create nodes for Processes and Edges for dependencies.<br>
+                    <code>Wait Edge:</code> Process A ➔ Resource X (Held by B) implies Edge A ➔ B.<br>
+                    <code>Cycle Check:</code> If DFS traces a path Back to Start (e.g., A ➔ B ➔ C ➔ A), a Deadlock
+                    exists.
+                </p>
+            </div>
+            <div class="glass-panel">
+                <h3 style="color: var(--primary)">Prevention vs Avoidance</h3>
+                <p style="margin-top:1rem; color:var(--text-muted); line-height:1.6;">
+                    <strong>Prevention:</strong> Structurally creates a system where one of the 4 Coffman conditions
+                    cannot hold (e.g., Hierarchy breaks Circular Wait).
+                    <br><br>
+                    <strong>Avoidance:</strong> Dynamically checks states (like Chandy-Misra or Banker's Algorithm) to
+                    steer clear of unsafe states during execution.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadlock Framework</title>
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+
+        <div class="hero">
+            <h1>Deadlock Framework<br><span
+                    style="color: var(--primary); font-size: 2.5rem; letter-spacing: 0.1em; text-transform: uppercase;">Simulator</span>
+            </h1>
+            <p>
+                A comprehensive interactive suite to explore Deadlock Creation, Detection, Avoidance, and Prevention
+                algorithms.
+            </p>
+        </div>
+
+        <div class="card-grid">
+
+            <!-- 1. NAIVE / SANDBOX -->
+            <a href="deadlock.html">
+                <div class="glass-panel feature-card" style="border-color: rgba(239, 68, 68, 0.3);">
+                    <div class="card-icon" style="color: var(--danger);">⚠</div>
+                    <h2>1. Deadlock Sandbox</h2>
+                    <p>
+                        <strong>Start Here.</strong> Explore the "Cycle of Death". See how the Naive approach fails due
+                        to Circular Wait.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Education</span>
+                        <span class="tag">Failure Mode</span>
+                    </div>
+                    <div class="btn-start" style="color: var(--danger);">Enter Sandbox →</div>
+                </div>
+            </a>
+
+            <!-- 2. CHANDY MISRA -->
+            <a href="chandy.html">
+                <div class="glass-panel feature-card">
+                    <div class="version-badge">v2.1</div>
+                    <div class="card-icon">⚡</div>
+                    <h2>2. Chandy–Misra</h2>
+                    <p>
+                        <strong>Avoidance.</strong> A distributed graph algorithm using "dirty/clean" fork states and
+                        message passing.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Distributed</span>
+                        <span class="tag">Graph</span>
+                    </div>
+                    <div class="btn-start">Launch →</div>
+                </div>
+            </a>
+
+            <!-- 3. RESOURCE HIERARCHY -->
+            <a href="hierarchy.html">
+                <div class="glass-panel feature-card">
+                    <div class="card-icon">🔒</div>
+                    <h2>3. Resource Hierarchy</h2>
+                    <p>
+                        <strong>Prevention.</strong> Enforces a strict Global Order (Low → High) to mathematically
+                        prevent cycles.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Ordering</span>
+                        <span class="tag">Robust</span>
+                    </div>
+                    <div class="btn-start">Launch →</div>
+                </div>
+            </a>
+
+            <!-- 4. ARBITRATOR -->
+            <a href="arbitrator.html">
+                <div class="glass-panel feature-card">
+                    <div class="card-icon">⚖️</div>
+                    <h2>4. Arbitrator (Butler)</h2>
+                    <p>
+                        <strong>Prevention.</strong> A central authority restricts access (N-1 eaters) to ensure one
+                        seat is always free.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Centralized</span>
+                        <span class="tag">Simple</span>
+                    </div>
+                    <div class="btn-start">Launch →</div>
+                </div>
+            </a>
+
+            <!-- 5. WAIT-DIE -->
+            <a href="waitdie.html">
+                <div class="glass-panel feature-card">
+                    <div class="card-icon">⏳</div>
+                    <h2>5. Wait-Die Scheme</h2>
+                    <p>
+                        <strong>Avoidance.</strong> Uses Timestamps. Older processes wait; Younger processes die
+                        (rollback).
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Timestamp</span>
+                        <span class="tag">Priority</span>
+                    </div>
+                    <div class="btn-start">Launch →</div>
+                </div>
+            </a>
+
+            <!-- 6. TIMEOUT -->
+            <a href="timeout.html">
+                <div class="glass-panel feature-card">
+                    <div class="card-icon">🔁</div>
+                    <h2>6. Timeout Recovery</h2>
+                    <p>
+                        <strong>Recovery.</strong> Detects stagnation. If waiting too long, assume deadlock and release
+                        resources.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Detection</span>
+                        <span class="tag">Practical</span>
+                    </div>
+                    <div class="btn-start">Launch →</div>
+                </div>
+            </a>
+
+            <!-- 7. COMPARISON -->
+            <a href="comparison.html" style="grid-column: 1 / -1;">
+                <div class="glass-panel feature-card"
+                    style="border-color: rgba(16, 185, 129, 0.3); display:flex; flex-direction:row; align-items:center; gap:2rem;">
+                    <div class="card-icon" style="color: var(--success); font-size:4rem; margin-bottom:0;">📊</div>
+                    <div>
+                        <h2>Framework Analysis Matrix</h2>
+                        <p style="margin-bottom:0;">
+                            Comprehensive comparison of all 6 strategies side-by-side. Analyze Fairness, Overhead, and
+                            Deadlock guarantees.
+                        </p>
+                    </div>
+                    <div class="btn-start" style="color: var(--success); margin-left:auto; white-space:nowrap;">View
+                        Report →</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 5rem; opacity: 0.6; font-size: 0.9rem;">
+            <p>Operating Systems Project • Advanced Interactive Visualization</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

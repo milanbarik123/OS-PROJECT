@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+    /* Base Colors - Light Theme */
+    --bg-color: #f9fafb;
+    /* Light Grey/White */
+
+    /* Card Backgrounds - White Glass */
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --card-border: rgba(0, 0, 0, 0.08);
+    /* Subtle dark border */
+
+    /* Primary Theme: Amber/Orange (Kept similar but adjusted for light bg) */
+    --primary: #d97706;
+    /* Amber 600 - slightly darker for contrast on white */
+    --primary-dim: #b45309;
+    --primary-glow: rgba(245, 158, 11, 0.2);
+
+    --accent: #f59e0b;
+    /* Amber 500 */
+
+    /* Semantic Colors */
+    --success: #059669;
+    /* Emerald 600 - darker for white bg */
+    --warning: #d97706;
+    /* Amber 600 */
+    --danger: #dc2626;
+    /* Red 600 */
+
+    /* Text */
+    --text-main: #111827;
+    /* Gray 900 (Black-ish) */
+    --text-muted: #4b5563;
+    /* Gray 600 */
+
+    /* Fonts - 'Outfit' is a modern, clean geometric sans */
+    --font-main: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --glass-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+    /* Softer shadow */
+    --border-radius-lg: 16px;
+    --border-radius-sm: 8px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.03) 0%, transparent 40%);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-size: 14px;
+    /* Smaller base font as requested */
+    letter-spacing: 0.01em;
+}
+
+/* Typography Overrides for "Nice & Small" Look */
+h1 {
+    font-size: 2.5rem;
+    /* Reduced from 3.5rem */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0;
+    color: var(--text-main);
+    /* Fallback */
+    background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    /* Removed heavy shadow */
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+/* Layout */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 0;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+.hero p {
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    /* Narrower sidebar */
+    gap: 1.5rem;
+    height: calc(100vh - 8rem);
+}
+
+/* Glass Panels - Sleek */
+.glass-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--glass-shadow);
+    padding: 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Feature Cards (Homepage) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px -10px rgba(245, 158, 11, 0.2);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.version-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--primary);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-main);
+    padding: 0.5rem 0.8rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: var(--text-muted);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dim) 100%);
+    border: none;
+    color: #fff;
+    /* White text on orange */
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+.btn-start {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Inputs / Selects */
+select,
+input {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: var(--text-main) !important;
+    border-radius: 6px;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    font-family: var(--font-main);
+}
+
+select:focus,
+input:focus {
+    outline: none;
+    border-color: var(--primary) !important;
+}
+
+/* Table / Sidebar Controls */
+.control-group label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    margin-right: 0.3rem;
+    margin-top: 0.5rem;
+}
+
+/* Logs */
+.log-panel {
+    background: #000;
+    border: 1px solid #333;
+    border-radius: var(--border-radius-lg);
+    padding: 0.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.terminal-window {
+    flex-grow: 1;
+    overflow-y: auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    /* Very small terminal font */
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.log-entry {
+    margin: 0;
+    padding: 2px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.log-entry.system {
+    color: var(--accent);
+}
+
+.log-entry.highlight {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.log-entry.warning {
+    color: var(--danger);
+}
+
+.log-entry.error {
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.log-ts {
+    color: #555;
+    margin-right: 8px;
+    user-select: none;
+}
+
+/* Visual Area */
+.visual-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-surface {
+    /* No visible table, just the nodes */
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+/* Philosophers & Resources */
+.philosopher {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fff;
+    /* White background for nodes */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    font-size: 1.1rem;
+}
+
+.philosopher.eating {
+    background: var(--primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 30px var(--primary-glow);
+    transform: scale(1.1);
+    color: #000;
+    /* Contrast on orange */
+}
+
+.philosopher.hungry {
+    border-color: var(--danger);
+    background: rgba(239, 68, 68, 0.1);
+    animation: pulseRed 2s infinite;
+}
+
+.philosopher.thinking {
+    opacity: 0.7;
+}
+
+.state-label {
+    font-size: 9px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+
+.fork {
+    position: absolute;
+    background: #e5e7eb;
+    /* Light grey fork */
+    color: #4b5563;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    z-index: 5;
+    transition: all 0.3s;
+    border: 1px solid #d1d5db;
+}
+
+.fork.held {
+    background: var(--success);
+    color: #000;
+    transform: scale(0.8);
+}
+
+/* SVG Graph */
+#graph-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.edge-path {
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.edge-path.held {
+    stroke: var(--success);
+    stroke-opacity: 0.6;
+}
+
+.edge-path.request {
+    stroke: var(--danger);
+    stroke-dasharray: 4;
+    stroke-opacity: 0.8;
+    animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -8;
+    }
+}
+
+@keyframes pulseRed {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Background Particles (Subtle) */
+.particles {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    filter: blur(100px);
+    opacity: 0.05;
+    animation: drift 20s infinite alternate;
+}
+
+.particle:nth-child(2) {
+    top: 20%;
+    right: 10%;
+    background: var(--accent);
+    animation-delay: -5s;
+}
+
+.particle:nth-child(3) {
+    bottom: 10%;
+    left: 20%;
+    animation-delay: -10s;
+}
+
+@keyframes drift {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(30px, 30px);
+    }
+}
